@@ -9,7 +9,7 @@ public class Stock extends CardList{
 
     public Stock(){
         super();
-        this.cards.addAll(new Crupier(new FrenchDeckBuilder().build()).shuffle(50));
+        this.cards.addAll(new Crupier(new FrenchDeckBuilder().build()).shuffle(500));
     }
 
     @Override
@@ -29,8 +29,5 @@ public class Stock extends CardList{
         }
         return cardsSubList;
     }
-    
-
-
 
 }

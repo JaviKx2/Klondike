@@ -15,18 +15,21 @@ public class Board {
     private Waste waste;
 
     private Stock stock;
+    
+    private BoardState boardState;
 
     public Board() {
         this.stock = new Stock();
         this.waste = new Waste();
         initializeFoundationPiles();
         initializeTableauPiles();
+        this.boardState = BoardState.WAITING_FOR_MOVE;
     }
     
     private void initializeTableauPiles(){
         this.tableauPiles = new TableauPile[NUMBER_OF_TABLEAU_PILES];
         for (int i = 0; i < NUMBER_OF_TABLEAU_PILES; i++) {
-            tableauPiles[i] = new TableauPile(stock.removeCards(i+1), i);
+            tableauPiles[i] = new TableauPile(stock.removeCards(i+1));
         }
     }
     
@@ -35,6 +38,14 @@ public class Board {
         for (int i = 0; i < NUMBER_OF_FOUNDATION_PILES; i++) {
             foundationPiles[i] = new Foundation();
         }
+    }
+    
+    public void setBoardState(BoardState boardState){
+        this.boardState = boardState;
+    }
+    
+    public BoardState getBoardState(){
+        return this.boardState;
     }
     
     public boolean isWasteEmpty(){
@@ -49,13 +60,16 @@ public class Board {
         return foundationPiles[foundationSuit.ordinal()].isEmpty();       
     }
     
-    public boolean isTableauPileEmpty(){
-        //TODO Terminan implementación
-        return false;
+    public boolean isTableauPileEmpty(int tableauPile){
+        return tableauPiles[tableauPile].isEmpty();
     }
     
     public List<Card> removeCardsFromWaste(int numberOfCards){
         return waste.removeCards(numberOfCards);
+    }
+    
+    public void removeAllCardsFromWaste(){
+        waste.removeAllCards();
     }
     
     public List<Card> removeCardsFromStock(int numberOfCards){
@@ -68,6 +82,22 @@ public class Board {
     
     public List<Card> removeCardsFromTableauPile(int tableauPile, int numberOfCards){
         return tableauPiles[tableauPile].removeCards(numberOfCards);
+    }
+    
+    public List<Card> getAllCardsFromWaste(){
+        return waste.getAllCards();
+    }
+    
+    public List<Card> getAllCardsFromStock(){
+        return stock.getAllCards();
+    }
+    
+    public List<Card> getAllCardsFromFoundation(Suit foundationSuit){
+        return foundationPiles[foundationSuit.ordinal()].getAllCards();
+    }
+    
+    public List<Card> getAllCardsFromTableauPile(int tableauPile){
+        return tableauPiles[tableauPile].getAllCards();
     }
     
     public List<Card> getCardsFromWaste(int numberOfCards){
@@ -112,6 +142,13 @@ public class Board {
         return numberOfFullPiles == foundationPiles.length;
     }
     
+    public int getNumberOfTableauPiles(){
+        return NUMBER_OF_TABLEAU_PILES;
+    }
+    
+    public int getNumberOfFoundationPiles(){
+        return NUMBER_OF_FOUNDATION_PILES;
+    }
     
     
 }

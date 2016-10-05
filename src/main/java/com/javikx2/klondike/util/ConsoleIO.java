@@ -17,7 +17,7 @@ public class ConsoleIO {
 				input = bufferedReader.readLine();
 				ok = true;
 			} catch (Exception ex) {
-				this.writeError("de cadena de caracteres");
+				this.writeError("of Strings");
 			}
 		} while (!ok);
 		return input;
@@ -31,7 +31,7 @@ public class ConsoleIO {
 				input = Integer.parseInt(this.readString(title));
 				ok = true;
 			} catch (Exception ex) {
-				this.writeError("entero");
+				this.writeError("integer");
 			}
 		} while (!ok);
 		return input;
@@ -43,7 +43,7 @@ public class ConsoleIO {
 		do {
 			String input = this.readString(title);
 			if (input.length() != 1) {
-				this.writeError("caracter");
+				this.writeError("character");
 			} else {
 				charValue = input.charAt(0);
 				ok = true;
@@ -65,7 +65,7 @@ public class ConsoleIO {
 	}
 
 	private void writeError(String formato) {
-		System.out.println("ERROR DE FORMATO! "
-				+ "Introduzca un valor con formato " + formato + ".");
+		System.out.println("FORMAT ERROR! "
+				+ "Introduce a value with this format " + formato + ".");
 	}
 }

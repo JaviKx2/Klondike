@@ -25,7 +25,7 @@ public class LimitedIntDialog {
 			value = io.readInt(title);
 			ok = limits.includes(value);
 			if (!ok) {
-				io.writeln("El valor debe estar entre " + limits);
+				io.writeln("The value must be between " + limits);
 			}
 		} while (!ok);
 		return value;

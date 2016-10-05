@@ -23,8 +23,11 @@ public abstract class CardList {
     }
     
     public List<Card> removeAllCards(){
-        //TODO Finish method.
-        return this.cards;
+        List<Card> cardsSublist = new ArrayList<>();
+        for(int i = 0; i < cards.size(); i++){
+            cardsSublist.add(cards.remove(i));
+        }    
+        return cardsSublist;
     }
 
     public abstract List<Card> getCards(int numberOfCards);

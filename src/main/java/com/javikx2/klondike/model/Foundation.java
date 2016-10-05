@@ -1,23 +1,24 @@
 package com.javikx2.klondike.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Foundation extends CardList{
-    Suit suit;
-
+public class Foundation extends CardList {
     @Override
     public List<Card> getCards(int numberOfCards) {
-        // TODO Auto-generated method stub
-        return null;
+        return cards.subList(0, numberOfCards);
     }
 
     @Override
     public List<Card> removeCards(int numberOfCards) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Card> cardsSubList = new ArrayList<>();
+        for (int i = 0; i < numberOfCards; i++) {
+            cardsSubList.add(cards.remove(numberOfCards));
+        }
+        return cardsSubList;
     }
-    
-    public boolean isFull(){
+
+    public boolean isFull() {
         return cards.size() == Suit.values().length;
     }
 
